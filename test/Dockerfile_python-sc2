@@ -55,7 +55,7 @@ WORKDIR /root/StarCraftII/maps/
 # Download and uncompress StarCraftII Maps, remove zip file - using "maps" instead of "Maps" as target folder
 
 # move a 5.13 map for testing
-RUN mv "/root/sharpy-sc2/maps/Equilibrium513AIE.SC2Map" "/root/StarCraftII/maps"
+RUN mv /root/sharpy-sc2/maps/Equilibrium513AIE.SC2Map /root/StarCraftII/maps
 
 # Remove LE suffix from file names
 RUN rename -v 's/LE.SC2Map/.SC2Map/' *.SC2Map 
