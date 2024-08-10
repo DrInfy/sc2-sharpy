@@ -54,11 +54,7 @@ WORKDIR /root/StarCraftII/maps/
 # Maps are available here https://github.com/Blizzard/s2client-proto#map-packs and here https://aiarena.net/wiki/maps/
 # Download and uncompress StarCraftII Maps, remove zip file - using "maps" instead of "Maps" as target folder
 
-# move a 5.13 map for testing
-RUN mv /root/sharpy-sc2/maps/Equilibrium513AIE.SC2Map /root/StarCraftII/maps
 
-# Remove LE suffix from file names
-RUN rename -v 's/LE.SC2Map/.SC2Map/' *.SC2Map 
 
 # List all map files
 RUN tree
@@ -71,5 +67,8 @@ WORKDIR /root/sharpy-sc2
 # Install the sharpy-sc2 library and its requirements (s2clientprotocol etc.) to python
 RUN python -m pip install --upgrade pip
 RUN python -m pip install -r requirements.txt
+
+# move a 5.13 map for testing
+RUN mv /root/sharpy-sc2/maps/Equilibrium513AIE.SC2Map /root/StarCraftII/maps
 
 ENTRYPOINT [ "/bin/bash" ]
