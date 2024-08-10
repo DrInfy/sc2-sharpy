@@ -51,35 +51,14 @@ RUN ln -s /root/StarCraftII/Maps /root/StarCraftII/maps \
 # Change to maps folder
 WORKDIR /root/StarCraftII/maps/
 
-# Maps are available here https://github.com/Blizzard/s2client-proto#map-packs and here http://wiki.sc2ai.net/Ladder_Maps
+# Maps are available here https://github.com/Blizzard/s2client-proto#map-packs and here https://aiarena.net/wiki/maps/
 # Download and uncompress StarCraftII Maps, remove zip file - using "maps" instead of "Maps" as target folder
 
-# Get sc2ai.net ladder maps
-RUN wget --quiet --show-progress --progress=bar:force \
-    http://archive.sc2ai.net/Maps/Season1Maps.zip \
-    http://archive.sc2ai.net/Maps/Season2Maps.zip \
-    http://archive.sc2ai.net/Maps/Season3Maps.zip \
-    http://archive.sc2ai.net/Maps/Season4Maps.zip \
-    http://archive.sc2ai.net/Maps/Season5Maps.zip \
-    http://archive.sc2ai.net/Maps/Season6Maps.zip \
-    http://archive.sc2ai.net/Maps/Season7Maps.zip \
-    http://archive.sc2ai.net/Maps/Season8Maps.zip \
-    http://archive.sc2ai.net/Maps/Season9Maps.zip \
-    http://archive.sc2ai.net/Maps/Season10Maps.zip \
-    && unzip -q -o '*.zip' \
-    && rm *.zip 
+# Get 5.13 maps
+RUN wget --quiet --show-progress --progress=bar:force https://aiarena.net/wiki/184/plugin/attachments/download/39/ \
+    && unzip -q -o '5.13.zip' \
+    && rm 5.13.zip
 
-# Get official blizzard maps
-RUN wget --quiet --show-progress --progress=bar:force http://blzdistsc2-a.akamaihd.net/MapPacks/Ladder2019Season3.zip \
-    && unzip -q -P iagreetotheeula -o 'Ladder2019Season3.zip' \
-    && mv Ladder2019Season3/* . \
-    && rm Ladder2019Season3.zip \
-    && rm -r Ladder2019Season3 
-
-# Get v5.0.6 maps
-RUN wget --quiet --show-progress --progress=bar:force https://github.com/shostyn/sc2patch/raw/master/Maps/506.zip \
-    && unzip -q -o '506.zip' \
-    && rm 506.zip
 
 # Remove LE suffix from file names
 RUN rename -v 's/LE.SC2Map/.SC2Map/' *.SC2Map 
