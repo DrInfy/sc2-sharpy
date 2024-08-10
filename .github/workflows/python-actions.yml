@@ -85,5 +85,5 @@ jobs:
         # docker exec --interactive app1 bash -c "python python-sc2/test/travis_test_script.py"
         
         # could use matrix here to provide the bots and map
-        docker exec -i app1 bash -c "python run_custom.py -p1 ${{ matrix.player1 }} -p2 ${{ matrix.player2 }} --map AcolyteLE --requirewin 1"
+        docker exec -i app1 bash -c "python run_custom.py -p1 ${{ matrix.player1 }} -p2 ${{ matrix.player2 }} --map Equilibrium513AIE --requirewin 1"
         docker rm -f app1
