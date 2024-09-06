@@ -264,7 +264,7 @@ class UnitValue(ManagerBase, IUnitValues):
             ),
             UnitTypeId.SIEGETANK: UnitData(150, 125, 3, 3, features=[UnitFeature.HitsGround]),
             UnitTypeId.SIEGETANKSIEGED: UnitData(150, 125, 3, 3, features=[UnitFeature.HitsGround]),
-            UnitTypeId.CYCLONE: UnitData(150, 100, 3, 3, features=[UnitFeature.HitsGround, UnitFeature.ShootsAir]),
+            UnitTypeId.CYCLONE: UnitData(125, 50, 2, 2, features=[UnitFeature.HitsGround, UnitFeature.ShootsAir]),
             UnitTypeId.THOR: UnitData(300, 200, 6, 6, features=[UnitFeature.HitsGround, UnitFeature.ShootsAir]),
             UnitTypeId.VIKING: UnitData(
                 150, 75, 2, 2, features=[UnitFeature.HitsGround, UnitFeature.ShootsAir, UnitFeature.Flying]
@@ -277,13 +277,13 @@ class UnitValue(ManagerBase, IUnitValues):
             ),
             UnitTypeId.MEDIVAC: UnitData(100, 100, 2, 2, features=[UnitFeature.Flying]),
             UnitTypeId.LIBERATOR: UnitData(
-                150, 150, 3, 3, features=[UnitFeature.HitsGround, UnitFeature.ShootsAir, UnitFeature.Flying]
+                150, 125, 3, 3, features=[UnitFeature.HitsGround, UnitFeature.ShootsAir, UnitFeature.Flying]
             ),
-            UnitTypeId.LIBERATORAG: UnitData(150, 150, 3, 3, features=[UnitFeature.Flying]),
+            UnitTypeId.LIBERATORAG: UnitData(150, 125, 3, 3, features=[UnitFeature.Flying]),
             UnitTypeId.BANSHEE: UnitData(
                 150, 100, 3, 3, features=[UnitFeature.HitsGround, UnitFeature.Flying, UnitFeature.Cloak]
             ),
-            UnitTypeId.RAVEN: UnitData(100, 200, 2, 2, features=[UnitFeature.Flying, UnitFeature.Detector]),
+            UnitTypeId.RAVEN: UnitData(100, 150, 2, 2, features=[UnitFeature.Flying, UnitFeature.Detector]),
             UnitTypeId.BATTLECRUISER: UnitData(
                 400, 300, 6, 7, features=[UnitFeature.HitsGround, UnitFeature.ShootsAir, UnitFeature.Flying]
             ),
@@ -319,7 +319,7 @@ class UnitValue(ManagerBase, IUnitValues):
                 15, 0, 0, 0.01, features=[UnitFeature.HitsGround, UnitFeature.ShootsAir, UnitFeature.Flying]
             ),
             UnitTypeId.MOTHERSHIP: UnitData(
-                300, 300, 8, 8, features=[UnitFeature.HitsGround, UnitFeature.ShootsAir, UnitFeature.Flying]
+                300, 300, 6, 6, features=[UnitFeature.HitsGround, UnitFeature.ShootsAir, UnitFeature.Flying]
             ),
             # Zerg
             UnitTypeId.LARVA: UnitData(0, 0, 0, 0),
@@ -346,7 +346,7 @@ class UnitValue(ManagerBase, IUnitValues):
             UnitTypeId.SWARMHOSTMP: UnitData(100, 75, 3, 3, features=[UnitFeature.HitsGround]),
             UnitTypeId.LOCUSTMP: UnitData(0, 0, 0, 0.5),
             UnitTypeId.LOCUSTMPFLYING: UnitData(0, 0, 0, 0.5),
-            UnitTypeId.ULTRALISK: UnitData(300, 200, 6, 6, features=[UnitFeature.HitsGround]),
+            UnitTypeId.ULTRALISK: UnitData(275, 200, 6, 6, features=[UnitFeature.HitsGround]),
             UnitTypeId.OVERLORD: UnitData(100, 0, 0, 0.1, features=[UnitFeature.Flying]),
             UnitTypeId.OVERLORDCOCOON: UnitData(100, 0, 0, 0.1, features=[UnitFeature.Flying]),
             UnitTypeId.OVERLORDTRANSPORT: UnitData(100, 0, 0, 0.5, features=[UnitFeature.Flying]),
@@ -396,7 +396,7 @@ class UnitValue(ManagerBase, IUnitValues):
             UnitTypeId.FACTORY: UnitData(150, 100, 0, 0, 43, features=[UnitFeature.Structure]),
             UnitTypeId.FACTORYFLYING: UnitData(150, 100, 0, 0, None, features=[UnitFeature.Structure]),
             UnitTypeId.GHOSTACADEMY: UnitData(150, 50, 0, 0, 29, features=[UnitFeature.Structure]),
-            UnitTypeId.ARMORY: UnitData(150, 100, 0, 0, 46, features=[UnitFeature.Structure]),
+            UnitTypeId.ARMORY: UnitData(150, 50, 0, 0, 46, features=[UnitFeature.Structure]),
             UnitTypeId.STARPORT: UnitData(150, 100, 0, 0, 36, features=[UnitFeature.Structure]),
             UnitTypeId.STARPORTFLYING: UnitData(150, 100, 0, 0, None, features=[UnitFeature.Structure]),
             UnitTypeId.FUSIONCORE: UnitData(150, 150, 0, 0, 46, features=[UnitFeature.Structure]),
@@ -516,12 +516,12 @@ class UnitValue(ManagerBase, IUnitValues):
 
         def cyclone_range(unit: Unit):
             if not unit.is_mine:
-                return 13  # worst case
+                return 9  # worst case
             if self.knowledge.cooldown_manager.is_ready(unit.tag, AbilityId.LOCKON_LOCKON):
-                return 7
+                return 6
             if self.knowledge.cooldown_manager.is_ready(unit.tag, AbilityId.CANCEL_LOCKON):
-                return 13
-            return 7  # ?
+                return 9
+            return 6  # ?
 
         def colossus_range(unit: Unit):
             if not unit.is_mine:
