@@ -43,6 +43,7 @@ difficulty = {
     "veryeasy": Difficulty.VeryEasy,
 }
 
+
 def race_selector(race: str) -> Race:
     if race == "zerg":
         return Race.Zerg
@@ -51,6 +52,7 @@ def race_selector(race: str) -> Race:
     if race == "protoss":
         return Race.Protoss
     return Race.Random
+
 
 class DummyBuilder:
     def __init__(self, key: str, name: str, race: Race, file_name: str, bot_type: type, params_count: int = 0) -> None:
