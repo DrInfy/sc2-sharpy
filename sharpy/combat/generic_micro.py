@@ -13,11 +13,13 @@ from sc2.units import Units
 
 
 class CombatModel:
-    StalkerToRoach = 0  # Longer range vs shorther
+    StalkerToRoach = 0  # Longer range vs shorter, also against some melee
     StalkerToSpeedlings = 1  # Ranged vs melee
     StalkerToSiege = 2  # Range vs extreme fire power
     AssaultRamp = 3  # Push on narrow ramps
     RoachToStalker = 4  # Shorter range vs longer
+    StalkerToStalker = 5  # Equal range
+    Melee = 6  # Melee fight
 
 
 no_retreat_on_low_hp: Set[UnitTypeId] = {
@@ -34,6 +36,10 @@ class GenericMicro(MicroStep):
         self.prio_dict: Optional[Dict[UnitTypeId, int]] = None
         self.model = CombatModel.StalkerToRoach
         self.cyclone_dodge = True
+        self.models_with_retreat = [CombatModel.StalkerToRoach,
+                                    CombatModel.StalkerToSpeedlings,
+                                    CombatModel.Melee,
+                                    CombatModel.StalkerToStalker]
         super().__init__()
 
     def should_retreat(self, unit: Unit) -> bool:
@@ -48,7 +54,7 @@ class GenericMicro(MicroStep):
         return health_percentage < 0.3 or unit.weapon_cooldown < 0  # low hp or unit can't attack
 
     def group_solve_combat(self, units: Units, current_command: Action) -> Action:
-        self.model = CombatModel.StalkerToRoach
+        self.model = CombatModel.StalkerToStalker
 
         if len(units.flying) == len(units):
             flyers = True
@@ -72,6 +78,12 @@ class GenericMicro(MicroStep):
                     self.model = CombatModel.RoachToStalker
                 elif self.attack_range > self.enemy_attack_range + 0.5:
                     self.model = CombatModel.StalkerToRoach
+        elif self.attack_range > 1 and self.engaged_power.melee_power > 5:
+            self.model = CombatModel.StalkerToRoach
+        elif self.attack_range < self.enemy_attack_range - 0.5:
+            self.model = CombatModel.RoachToStalker
+        elif self.attack_range > self.enemy_attack_range + 0.5:
+            self.model = CombatModel.StalkerToRoach
 
         if self.model == CombatModel.StalkerToSpeedlings and self.closest_group:
             if self.can_engage_ratio < 0.6:
@@ -121,7 +133,8 @@ class GenericMicro(MicroStep):
                     backstep = self.pather.find_weak_influence_ground(backstep, 4)
                 return Action(backstep, False)
 
-        if self.should_retreat(unit) and self.closest_group and not self.ready_to_shoot(unit):
+        if (self.should_retreat(unit) and self.closest_group and not self.ready_to_shoot(unit)
+                and self.model in self.models_with_retreat):
             backstep: Point2 = unit.position.towards(self.closest_group.center, -3)
             if unit.is_flying:
                 backstep = self.pather.find_weak_influence_air(backstep, 4)
@@ -151,6 +164,23 @@ class GenericMicro(MicroStep):
                 if target.distance_to(unit) < 7:
                     return Action(target, True)
 
+        if self.model == CombatModel.StalkerToStalker:
+            if self.ready_to_shoot(unit):
+                if self.closest_group:
+                    current_command = Action(self.closest_group.center, True)
+                else:
+                    current_command = Action(current_command.target, True)
+            elif closest:
+                # d = unit.distance_to(closest)
+                range = self.unit_values.real_range(unit, closest) - 0.25
+
+                if unit.is_flying:
+                    best_position = self.pather.find_low_inside_air(unit.position, closest.position, range)
+                else:
+                    best_position = self.pather.find_low_inside_ground(unit.position, closest.position, range)
+
+                return Action(best_position, False)
+
         if self.model == CombatModel.StalkerToRoach:
             if self.ready_to_shoot(unit):
                 if self.closest_group:
@@ -159,12 +189,20 @@ class GenericMicro(MicroStep):
                     current_command = Action(current_command.target, True)
             elif closest:
                 # d = unit.distance_to(closest)
-                range = self.unit_values.real_range(unit, closest) - 0.5
+                range = self.unit_values.real_range(unit, closest)
+
+                if unit.weapon_cooldown > 6:
+                    range += 1
+                elif unit.weapon_cooldown > 12:
+                    range += 2
 
                 if unit.is_flying:
                     best_position = self.pather.find_low_inside_air(unit.position, closest.position, range)
                 else:
                     best_position = self.pather.find_low_inside_ground(unit.position, closest.position, range)
+
+                if abs(best_position.distance_to_point2(unit.position) - range) < 1:
+                    best_position = unit.position.towards(best_position, range)
 
                 return Action(best_position, False)
 
