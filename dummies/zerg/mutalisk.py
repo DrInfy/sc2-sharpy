@@ -56,7 +56,9 @@ class MutaliskBuild(BuildOrder):
         high_tier = [
             # Step(RequiredUnitReady(UnitTypeId.GREATERSPIRE), ZergUnit(UnitTypeId.DRONE, 70)),
             Step(
-                None, ZergUnit(UnitTypeId.CORRUPTOR, 3, priority=True), skip_until=UnitReady(UnitTypeId.GREATERSPIRE),
+                None,
+                ZergUnit(UnitTypeId.CORRUPTOR, 3, priority=True),
+                skip_until=UnitReady(UnitTypeId.GREATERSPIRE),
             ),
             Step(None, MorphBroodLord(5)),
             # Step(RequiredGas(200), ZergUnit(UnitTypeId.MUTALISK, 20, priority=True))
@@ -77,7 +79,12 @@ class MutaliskBuild(BuildOrder):
             Step(None, ZergUnit(UnitTypeId.MUTALISK, 4), skip_until=UnitReady(UnitTypeId.SPIRE, 1)),
             Step(None, ZergUnit(UnitTypeId.DRONE, 45), None),
             Step(None, ActUnitOnce(UnitTypeId.ZERGLING, UnitTypeId.LARVA, 16), None),
-            Step(None, ZergUnit(UnitTypeId.ROACH, 10), skip=UnitReady(UnitTypeId.SPIRE, 1), skip_until=Gas(25),),
+            Step(
+                None,
+                ZergUnit(UnitTypeId.ROACH, 10),
+                skip=UnitReady(UnitTypeId.SPIRE, 1),
+                skip_until=Gas(25),
+            ),
             Step(None, ZergUnit(UnitTypeId.DRONE, 65), None),
             Step(
                 None,

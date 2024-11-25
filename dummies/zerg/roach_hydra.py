@@ -16,7 +16,11 @@ class RoachHydraBuild(BuildOrder):
     def __init__(self):
 
         gas_related = [
-            Step(UnitExists(UnitTypeId.HATCHERY, 2), Tech(UpgradeId.ZERGLINGMOVEMENTSPEED), skip_until=Gas(100),),
+            Step(
+                UnitExists(UnitTypeId.HATCHERY, 2),
+                Tech(UpgradeId.ZERGLINGMOVEMENTSPEED),
+                skip_until=Gas(100),
+            ),
             Step(None, ActBuilding(UnitTypeId.ROACHWARREN, 1), skip_until=Gas(100)),
             StepBuildGas(2, Time(4 * 60), Gas(100)),
             StepBuildGas(3, UnitExists(UnitTypeId.HYDRALISKDEN, 1), Gas(50)),
@@ -61,7 +65,11 @@ class RoachHydraBuild(BuildOrder):
             Step(None, ActUnitOnce(UnitTypeId.ROACH, UnitTypeId.LARVA, 4), skip_until=Gas(25)),
             Step(None, ActUnitOnce(UnitTypeId.ZERGLING, UnitTypeId.LARVA, 100), skip_until=Minerals(750)),
             Step(None, ActUnit(UnitTypeId.DRONE, UnitTypeId.LARVA, 45), None),
-            Step(None, ActUnit(UnitTypeId.HYDRALISK, UnitTypeId.LARVA, 7), skip=UnitReady(UnitTypeId.HYDRALISKDEN, 1),),
+            Step(
+                None,
+                ActUnit(UnitTypeId.HYDRALISK, UnitTypeId.LARVA, 7),
+                skip=UnitReady(UnitTypeId.HYDRALISKDEN, 1),
+            ),
             Step(None, ActUnitOnce(UnitTypeId.ZERGLING, UnitTypeId.LARVA, 24), None),
             Step(None, ActUnit(UnitTypeId.DRONE, UnitTypeId.LARVA, 50), None),
             Step(None, ActUnit(UnitTypeId.ROACH, UnitTypeId.LARVA, 10), skip_until=Gas(25)),
@@ -74,7 +82,7 @@ class RoachHydraBuild(BuildOrder):
 
 
 class RoachHydra(KnowledgeBot):
-    """Zerg macro opener into longer game roach hydra """
+    """Zerg macro opener into longer game roach hydra"""
 
     def __init__(self):
         super().__init__("Roach hydra")

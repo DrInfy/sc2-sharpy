@@ -72,8 +72,10 @@ class MicroTanks(GenericMicro):
 
             if unit.type_id == UnitTypeId.SIEGETANK and distance > 5 and distance < 13:
                 # don't siege up on the main base ramp!
-                if (len(self.zone_manager.expansion_zones) > 0
-                        and unit.distance_to(self.zone_manager.expansion_zones[0].ramp.bottom_center) > 7):
+                if (
+                    len(self.zone_manager.expansion_zones) > 0
+                    and unit.distance_to(self.zone_manager.expansion_zones[0].ramp.bottom_center) > 7
+                ):
                     siege_mode = AbilityId.SIEGEMODE_SIEGEMODE
 
             if distance > unsiege_threshold and (

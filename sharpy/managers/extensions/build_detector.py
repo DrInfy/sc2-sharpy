@@ -121,7 +121,7 @@ class BuildDetector(ManagerBase):
                 list.append(start_time)
 
     def started(self, type_id: UnitTypeId, index: int = 0) -> float:
-        """ Returns an absurdly large number when the building isn't started yet"""
+        """Returns an absurdly large number when the building isn't started yet"""
         list = self.timings.get(type_id, None)
         if not list:
             return sys.float_info.max

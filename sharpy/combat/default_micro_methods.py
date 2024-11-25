@@ -202,12 +202,12 @@ class DefaultMicroMethods:
 
         value_func: Callable[[Unit], float]
         if prio:
-            value_func = (
-                lambda u: 1 if u.type_id in changelings else prio.get(u.type_id, -1) * (1 - u.shield_health_percentage)
+            value_func = lambda u: (
+                1 if u.type_id in changelings else prio.get(u.type_id, -1) * (1 - u.shield_health_percentage)
             )
         else:
-            value_func = (
-                lambda u: 1
+            value_func = lambda u: (
+                1
                 if u.type_id in changelings
                 else 2 * step.unit_values.power_by_type(u.type_id, 1 - u.shield_health_percentage)
             )

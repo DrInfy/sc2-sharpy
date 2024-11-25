@@ -250,7 +250,10 @@ class CannonRush(KnowledgeBot):
                     ],
                     [ProtossUnit(UnitTypeId.STALKER, 100)],
                     [
-                        Step(UnitReady(UnitTypeId.CYBERNETICSCORE, 1), GridBuilding(UnitTypeId.TWILIGHTCOUNCIL, 1),),
+                        Step(
+                            UnitReady(UnitTypeId.CYBERNETICSCORE, 1),
+                            GridBuilding(UnitTypeId.TWILIGHTCOUNCIL, 1),
+                        ),
                         Step(UnitReady(UnitTypeId.CYBERNETICSCORE, 1), GridBuilding(UnitTypeId.GATEWAY, 7)),
                         StepBuildGas(4, skip=Gas(200)),
                     ],

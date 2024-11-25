@@ -8,8 +8,9 @@ from .mappings import MapsType, MapType, VisionStatus
 from sc2.unit import Unit
 from sc2.position import Point2
 
+
 class Sc2Map:
-    __slots__ = ['_overlord_spots', '_chokes', 'heuristic_accuracy', 'height_map', '_map']
+    __slots__ = ["_overlord_spots", "_chokes", "heuristic_accuracy", "height_map", "_map"]
 
     def __init__(
         self,
@@ -55,7 +56,6 @@ class Sc2Map:
         self._chokes = self._map.chokes
         return self._chokes
 
-
     def reset(self):
         self._map.reset()
 
@@ -93,7 +93,6 @@ class Sc2Map:
         Remove a 'connection' from location. This can be used to disable warp-ins in certain areas.
         """
         return self._map.remove_connection(start)
-
 
     def normalize_influence(self, value: int):
         self._map.normalize_influence(value)
@@ -139,9 +138,7 @@ class Sc2Map:
         """
         self._map.add_influence_fading(MapsType.PureGround, points, influence, full_range, fade_max_range)
 
-    def add_ground_influence(
-        self, points: List["Point2"], influence: float, full_range: float, fade_max_range: float
-    ):
+    def add_ground_influence(self, points: List["Point2"], influence: float, full_range: float, fade_max_range: float):
         self._map.add_influence_fading(MapsType.Ground, points, influence, full_range, fade_max_range)
 
     def add_air_influence(self, points: List["Point2"], influence: float, full_range: float, fade_max_range: float):
@@ -166,11 +163,14 @@ class Sc2Map:
         self._map.add_influence_without_zones(zones, int(value))
 
     def find_path(
-        self, map_type: MapType, start: Tuple[float, float], end: Tuple[float, float],
+        self,
+        map_type: MapType,
+        start: Tuple[float, float],
+        end: Tuple[float, float],
         large: bool = False,
         influence: bool = False,
         window: Optional[Tuple[Tuple[float, float], Tuple[float, float]]] = None,
-        distance_from_target: Optional[float] = None
+        distance_from_target: Optional[float] = None,
     ) -> Tuple[List[Tuple[int, int]], float]:
         """
         Finds a path ignoring influence.
@@ -185,7 +185,9 @@ class Sc2Map:
         :return: Tuple of points and total distance.
         """
 
-        return self._map.find_path(map_type, start, end, large, influence, self.heuristic_accuracy, window, distance_from_target)
+        return self._map.find_path(
+            map_type, start, end, large, influence, self.heuristic_accuracy, window, distance_from_target
+        )
 
     def find_path_influence(
         self, map_type: MapType, start: Tuple[float, float], end: Tuple[float, float], large: bool = False
@@ -221,7 +223,9 @@ class Sc2Map:
     def clear_vision(self) -> None:
         self._map.clear_vision()
 
-    def add_vision_params(self, detector: bool, flying: bool, position: Tuple[float, float], sight_range: float) -> None:
+    def add_vision_params(
+        self, detector: bool, flying: bool, position: Tuple[float, float], sight_range: float
+    ) -> None:
         vision_unit = VisionUnit(detector, flying, position, sight_range)
         self.add_vision(vision_unit)
 
@@ -250,7 +254,7 @@ class Sc2Map:
     def plot_vision(self, image_name: str = "vision_map", resize: int = 4) -> None:
         """
         Uses cv2 to draw current vision grid.
-        
+
         requires opencv-python
 
         :param path: list of points to colorize
@@ -278,8 +282,6 @@ class Sc2Map:
         image = np.array(self._map.draw_climbs(), dtype=np.uint8)
         image = np.multiply(image, 42)
         self.plot_image(image, image_name, resize)
-
-
 
     def plot_ground_map(self, path: List[Tuple[int, int]], image_name: str = "ground_map", resize: int = 4):
         image = np.array(self._map.ground_pathing, dtype=np.uint8)
@@ -332,10 +334,9 @@ class Sc2Map:
 
     def plot_image(self, image, image_name: str = "map", resize: int = 4):
         import cv2
+
         image = np.rot90(image, 1)
 
         resized = cv2.resize(image, dsize=None, fx=resize, fy=resize, interpolation=cv2.INTER_NEAREST)
         cv2.imshow(image_name, resized)
         cv2.waitKey(1)
-
-    

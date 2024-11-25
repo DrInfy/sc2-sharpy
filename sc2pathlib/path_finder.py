@@ -68,11 +68,13 @@ class PathFinder:
             self._path_find.remove_block(center, size)
 
     def find_path(
-        self, start: Tuple[float, float], end: Tuple[float, float],
+        self,
+        start: Tuple[float, float],
+        end: Tuple[float, float],
         large: bool = False,
         influence: bool = False,
         window: Optional[Tuple[Tuple[float, float], Tuple[float, float]]] = None,
-        distance_from_target: Optional[float] = None
+        distance_from_target: Optional[float] = None,
     ) -> Tuple[List[Tuple[int, int]], float]:
         """
         Finds a path ignoring influence.
@@ -89,20 +91,28 @@ class PathFinder:
         start_int = (int(round(start[0])), int(round(start[1])))
         end_int = (int(round(end[0])), int(round(end[1])))
         if window is not None:
-            window = ((int(round(window[0][0])), int(round(window[0][1]))),
-                      (int(round(window[1][0])), int(round(window[1][1]))))
-        return self._path_find.find_path(start_int, end_int, large, influence, self.heuristic_accuracy, window, distance_from_target)
+            window = (
+                (int(round(window[0][0])), int(round(window[0][1]))),
+                (int(round(window[1][0])), int(round(window[1][1]))),
+            )
+        return self._path_find.find_path(
+            start_int, end_int, large, influence, self.heuristic_accuracy, window, distance_from_target
+        )
 
     def find_path_influence(
         self, start: Tuple[float, float], end: Tuple[float, float], large: bool = False
     ) -> Tuple[List[Tuple[int, int]], float]:
         return self.find_path(start, end, large, influence=True)
 
-    def safest_spot(self, destination_center: Tuple[float, float], walk_distance: float) -> Tuple[Tuple[int, int], float]:
+    def safest_spot(
+        self, destination_center: Tuple[float, float], walk_distance: float
+    ) -> Tuple[Tuple[int, int], float]:
         destination_int = (round(destination_center[0]), round(destination_center[1]))
         return self._path_find.lowest_influence_walk(destination_int, walk_distance)
 
-    def lowest_influence_in_grid(self, destination_center: Tuple[float, float], radius: int) -> Tuple[Tuple[int, int], float]:
+    def lowest_influence_in_grid(
+        self, destination_center: Tuple[float, float], radius: int
+    ) -> Tuple[Tuple[int, int], float]:
         destination_int = (round(destination_center[0]), round(destination_center[1]))
         return self._path_find.lowest_influence(destination_int, radius)
 

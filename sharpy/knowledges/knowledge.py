@@ -72,7 +72,7 @@ class Knowledge:
 
     @property
     def enemy_race(self) -> Race:
-        """ Enemy random race gets updated when the bot meets one of the enemy units. """
+        """Enemy random race gets updated when the bot meets one of the enemy units."""
         return self.ai.enemy_race
 
     @property
@@ -178,7 +178,7 @@ class Knowledge:
             await manager.post_update()
 
     def step_took(self, ns_step: float):
-        """ Time taken in nanosecond for the current step to run. """
+        """Time taken in nanosecond for the current step to run."""
         if self.lag_handler:
             ms_step = ns_step / 1000 / 1000
             self.lag_handler.step_took(ms_step)

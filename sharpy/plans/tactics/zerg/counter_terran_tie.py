@@ -31,7 +31,9 @@ class CounterTerranTie(BuildOrder):
                     skip_until=Supply(199),
                 ),
                 Step(
-                    None, DefensiveBuilding(UnitTypeId.SPINECRAWLER, DefensePosition.Entrance), skip_until=Supply(199),
+                    None,
+                    DefensiveBuilding(UnitTypeId.SPINECRAWLER, DefensePosition.Entrance),
+                    skip_until=Supply(199),
                 ),
                 ZergUnit(UnitTypeId.MUTALISK, 10),
             ]

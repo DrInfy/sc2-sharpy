@@ -26,24 +26,23 @@ class Grid:
         return self._data[x][y]
 
     def __getitem__(self, pos: Point2):
-        """ Example usage: is_pathable = self._game_info.pathing_grid[Point2((20, 20))] == 0 """
+        """Example usage: is_pathable = self._game_info.pathing_grid[Point2((20, 20))] == 0"""
         if not self.is_inside(pos):
             return self.get_default()
 
         return self.get(math.floor(pos[0]), math.floor(pos[1]))
 
     @abstractmethod
-    def get_default(self):
-        ...
+    def get_default(self): ...
 
     def is_inside(self, pos: Point2):
         return 0 <= pos[0] < self.width and 0 <= pos[1] < self.height
 
     def query_area(self, position: Point2, fillType: BlockerType, check) -> bool:
-        """ <summary>
-         Query that fails if any is true.
-         </summary>
-         <returns>True if all cells pass check func. </returns>
+        """<summary>
+        Query that fails if any is true.
+        </summary>
+        <returns>True if all cells pass check func. </returns>
         """
         area = self.get_area(position, fillType)
         return self.query_rect(area, check)

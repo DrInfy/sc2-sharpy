@@ -115,7 +115,7 @@ class MicroStep(ABC, Component):
         return not unit.is_memory and unit.can_be_attacked and not unit.is_hallucination and not unit.is_snapshot
 
     def min_range(self, unit: Unit) -> float:
-        """ If a unit can attack both ground and air return the minimum of the attack ranges. """
+        """If a unit can attack both ground and air return the minimum of the attack ranges."""
         ground_range = self.unit_values.ground_range(unit)
         air_range = self.unit_values.air_range(unit)
         if not self.unit_values.can_shoot_air(unit):
@@ -125,7 +125,7 @@ class MicroStep(ABC, Component):
         return min(ground_range, air_range)
 
     def max_range(self, unit: Unit) -> float:
-        """ If a unit can attack both ground and air return the maximum of the attack ranges. """
+        """If a unit can attack both ground and air return the maximum of the attack ranges."""
         ground_range = self.unit_values.ground_range(unit)
         air_range = self.unit_values.air_range(unit)
         if not self.unit_values.can_shoot_air(unit):

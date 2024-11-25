@@ -11,7 +11,6 @@ from sc2.unit import Unit, UnitOrder
 
 
 class Workers(ActBase):
-
     """
     Builds workers in an optimal way for Protoss and Terran.
     Does not function for Zerg!

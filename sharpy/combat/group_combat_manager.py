@@ -41,7 +41,7 @@ class GroupCombatManager(ManagerBase, ICombatManager):
 
     @property
     def regroup_threshold(self) -> float:
-        """ Percentage 0 - 1 on how many of the attacking units should actually be together when attacking"""
+        """Percentage 0 - 1 on how many of the attacking units should actually be together when attacking"""
         return self.rules.regroup_percentage
 
     @property

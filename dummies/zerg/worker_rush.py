@@ -142,7 +142,11 @@ class LingFloodBuild(BuildOrder):
                 UnitExists(UnitTypeId.QUEEN, 1),
             ),
             Step(UnitExists(UnitTypeId.SPAWNINGPOOL, 1), ActUnit(UnitTypeId.DRONE, UnitTypeId.LARVA, 20), None),
-            Step(UnitExists(UnitTypeId.SPAWNINGPOOL, 1), ActUnitOnce(UnitTypeId.ZERGLING, UnitTypeId.LARVA, 12), None,),
+            Step(
+                UnitExists(UnitTypeId.SPAWNINGPOOL, 1),
+                ActUnitOnce(UnitTypeId.ZERGLING, UnitTypeId.LARVA, 12),
+                None,
+            ),
             Step(UnitExists(UnitTypeId.SPAWNINGPOOL, 1), ActUnit(UnitTypeId.DRONE, UnitTypeId.LARVA, 30), None),
             # Endless zerglings
             Step(UnitExists(UnitTypeId.SPAWNINGPOOL, 1), ActUnit(UnitTypeId.ZERGLING, UnitTypeId.LARVA), None),

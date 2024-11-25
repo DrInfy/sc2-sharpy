@@ -164,7 +164,7 @@ class PlanAddonSwap(ActBase):
         self.structures_at_positions = {unit.position: unit for unit in all_production}
 
     async def check_if_plan_is_completed(self):
-        """ Checks if all structures are satisfied with their addon count. """
+        """Checks if all structures are satisfied with their addon count."""
         self.completed = True
 
         for production_type in PRODUCTION_TYPES:
@@ -177,7 +177,7 @@ class PlanAddonSwap(ActBase):
                     return
 
     async def plan_addon_swaps(self):
-        """ Main function which first tries to move structures away from addons, then attaches them. """
+        """Main function which first tries to move structures away from addons, then attaches them."""
         await self.mark_unused_addon_locations()
         await self.mark_structures_for_possible_dettach()
         await self.plan_attach_to_addons()
@@ -198,7 +198,7 @@ class PlanAddonSwap(ActBase):
                 self.building_solver.free_addon_locations.add(pos)
 
     async def mark_structures_for_possible_dettach(self):
-        """ Marks all structures, that should no longer use their addons, as dettachable. """
+        """Marks all structures, that should no longer use their addons, as dettachable."""
         for production_type in PRODUCTION_TYPES:
             for addon_type in ADDON_TYPES:
                 production_with_addon: Units = self.production_with_addon[production_type][addon_type]
@@ -276,12 +276,12 @@ class PlanAddonSwap(ActBase):
         return current_location
 
     async def lift_away_from_addon(self, unit: Unit):
-        """ Plan to move structure away from addon. Find a free location to land to. """
+        """Plan to move structure away from addon. Find a free location to land to."""
         land_position = await self.find_land_location_with_addon(unit, addon_type=None)
         await self.lift_to_target_location(unit, land_position)
 
     async def lift_to_target_location(self, unit: Unit, location: Point2):
-        """ Plan to move structure to target location. Reserve the location to not be used by any other structure or a GridBuilding() command. """
+        """Plan to move structure to target location. Reserve the location to not be used by any other structure or a GridBuilding() command."""
         self.building_solver.structure_target_move_location[unit.tag] = location
 
     async def find_land_location_with_addon(self, unit: Unit, addon_type: UnitTypeId = None) -> Optional[Point2]:
@@ -321,7 +321,7 @@ class PlanAddonSwap(ActBase):
                 return unit.position.closest(locations_with_structures)
 
     def has_addon(self, unit: Unit, addon_type: UnitTypeId):
-        """ Checks if a unit (specifically: its tag) has the specific addon type or is planned to have the specific addon type. """
+        """Checks if a unit (specifically: its tag) has the specific addon type or is planned to have the specific addon type."""
         assert addon_type in {UnitTypeId.TECHLAB, UnitTypeId.REACTOR}
         if unit.tag in self.building_solver.structure_target_move_location:
             # If structure is ordered to move to a location which has a techlab, return true

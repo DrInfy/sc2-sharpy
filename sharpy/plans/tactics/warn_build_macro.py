@@ -59,5 +59,5 @@ class WarnBuildMacro(ActBase):
         return True
 
     def time_formatted(self, t: float) -> str:
-        """ Returns time as string in min:sec format """
+        """Returns time as string in min:sec format"""
         return f"{int(t // 60):02}:{int(t % 60):02}"

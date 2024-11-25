@@ -146,7 +146,8 @@ class VersionManager(ManagerBase):
             )
         if GameVersion.V_4_10_0 < self.base_version < GameVersion.V_4_12_0:
             self._set_enum_mapping(
-                AbilityId, {AbilityId.AMORPHOUSARMORCLOUD_AMORPHOUSARMORCLOUD: 3801},
+                AbilityId,
+                {AbilityId.AMORPHOUSARMORCLOUD_AMORPHOUSARMORCLOUD: 3801},
             )
 
     def set_version_to_410_with_new_balance(self):
@@ -178,7 +179,8 @@ class VersionManager(ManagerBase):
             },
         )
         self._set_enum_mapping(
-            BuffId, {BuffId.INHIBITORZONETEMPORALFIELD: 292, BuffId.RESONATINGGLAIVESPHASESHIFT: 293},
+            BuffId,
+            {BuffId.INHIBITORZONETEMPORALFIELD: 292, BuffId.RESONATINGGLAIVESPHASESHIFT: 293},
         )
 
         # UpgradeIds not changed

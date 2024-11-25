@@ -80,12 +80,12 @@ class EnemyArmyPredicter(ManagerBase):
 
     @property
     def own_value(self):
-        """ Our exact army value that we know of """
+        """Our exact army value that we know of"""
         return self.own_army_value_minerals + self.own_army_value_gas
 
     @property
     def enemy_value(self):
-        """ Best estimation on how big value enemy army has """
+        """Best estimation on how big value enemy army has"""
         return self.predicted_enemy_army_minerals + self.predicted_enemy_army_gas
 
     async def update(self):

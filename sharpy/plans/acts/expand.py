@@ -202,7 +202,7 @@ class Expand(ActBase):
                 self.client.debug_text_world(moving_status, worker.position3d)
 
     def expanding_in(self, zone: "Zone") -> bool:
-        """ Are we already expanding to this location? """
+        """Are we already expanding to this location?"""
         creation_ability: AbilityId = self.ai._game_data.units[self.townhall_type.value].creation_ability
         for worker in self.ai.workers:
             for order in worker.orders:

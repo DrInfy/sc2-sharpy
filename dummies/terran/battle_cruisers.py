@@ -110,13 +110,15 @@ class BattleCruisers(KnowledgeBot):
                     4, None, UnitExists(UnitTypeId.BATTLECRUISER, 1, include_killed=True, include_pending=True)
                 ),
                 Step(
-                    UnitExists(UnitTypeId.BATTLECRUISER, 1, include_killed=True), GridBuilding(UnitTypeId.BARRACKS, 3),
+                    UnitExists(UnitTypeId.BATTLECRUISER, 1, include_killed=True),
+                    GridBuilding(UnitTypeId.BARRACKS, 3),
                 ),
                 Step(None, BuildAddon(UnitTypeId.BARRACKSTECHLAB, UnitTypeId.BARRACKS, 1)),
                 Step(None, BuildAddon(UnitTypeId.BARRACKSREACTOR, UnitTypeId.BARRACKS, 1)),
                 Step(None, GridBuilding(UnitTypeId.STARPORT, 2)),
                 Step(
-                    UnitReady(UnitTypeId.STARPORT, 2), BuildAddon(UnitTypeId.STARPORTTECHLAB, UnitTypeId.STARPORT, 2),
+                    UnitReady(UnitTypeId.STARPORT, 2),
+                    BuildAddon(UnitTypeId.STARPORTTECHLAB, UnitTypeId.STARPORT, 2),
                 ),
                 Step(None, Tech(UpgradeId.SHIELDWALL)),
                 Step(Minerals(600), GridBuilding(UnitTypeId.BARRACKS, 5)),
@@ -134,7 +136,8 @@ class BattleCruisers(KnowledgeBot):
                     None,
                 ),
                 Step(
-                    UnitReady(UnitTypeId.STARPORT, 1), ActUnit(UnitTypeId.RAVEN, UnitTypeId.STARPORT, 2, priority=True),
+                    UnitReady(UnitTypeId.STARPORT, 1),
+                    ActUnit(UnitTypeId.RAVEN, UnitTypeId.STARPORT, 2, priority=True),
                 ),
             ],
             Step(

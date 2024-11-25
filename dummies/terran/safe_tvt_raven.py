@@ -59,7 +59,8 @@ class TerranSafeTvT(KnowledgeBot):
             Step(
                 UnitExists(UnitTypeId.FACTORY, include_pending=True),
                 BuildOrder(
-                    TerranUnit(UnitTypeId.REAPER, 3, only_once=True), TerranUnit(UnitTypeId.HELLION, 2, only_once=True),
+                    TerranUnit(UnitTypeId.REAPER, 3, only_once=True),
+                    TerranUnit(UnitTypeId.HELLION, 2, only_once=True),
                 ),
             ),
             BuildOrder(
@@ -168,7 +169,10 @@ class TerranSafeTvT(KnowledgeBot):
             units,
             # Build structures
             [
-                Step(Supply(14), GridBuilding(UnitTypeId.SUPPLYDEPOT, 1),),
+                Step(
+                    Supply(14),
+                    GridBuilding(UnitTypeId.SUPPLYDEPOT, 1),
+                ),
                 BuildGas(1),
                 GridBuilding(UnitTypeId.BARRACKS, 1),
                 StepBuildGas(2, requirement=Supply(17)),
@@ -189,7 +193,10 @@ class TerranSafeTvT(KnowledgeBot):
                 BuildGas(3),
                 # At around 4:20, this command center should be placed in-base and flown out later
                 # TODO Build 3rd CC inbase if possible
-                Step(Time(4 * 60 + 20), Expand(3),),
+                Step(
+                    Time(4 * 60 + 20),
+                    Expand(3),
+                ),
                 AutoDepot(),
                 Step(
                     UnitExists(UnitTypeId.RAVEN, 2, include_pending=True, include_killed=True),
@@ -211,11 +218,18 @@ class TerranSafeTvT(KnowledgeBot):
                         GridBuilding(UnitTypeId.BARRACKS, 5),
                     ),
                     # Add 2nd factory when combatshield is nearly done
-                    Step(TechReady(UpgradeId.SHIELDWALL, 0.6), GridBuilding(UnitTypeId.FACTORY, 2),),
+                    Step(
+                        TechReady(UpgradeId.SHIELDWALL, 0.6),
+                        GridBuilding(UnitTypeId.FACTORY, 2),
+                    ),
                     # Add armory when +1 attack is nearly done
                     Step(
                         TechReady(UpgradeId.TERRANINFANTRYWEAPONSLEVEL1, 0.6),
-                        GridBuilding(UnitTypeId.ARMORY, 1, priority=True,),
+                        GridBuilding(
+                            UnitTypeId.ARMORY,
+                            1,
+                            priority=True,
+                        ),
                     ),
                     # Research upgrades
                     research,

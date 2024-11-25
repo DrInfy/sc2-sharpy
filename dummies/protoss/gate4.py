@@ -64,7 +64,10 @@ class Stalkers4Gate(SkeletonBot):
                     AutoPylon(),
                     ActUnit(UnitTypeId.PROBE, UnitTypeId.NEXUS, 22),
                     SequentialList(
-                        Step(UnitReady(UnitTypeId.CYBERNETICSCORE, 1), GridBuilding(UnitTypeId.TWILIGHTCOUNCIL, 1),),
+                        Step(
+                            UnitReady(UnitTypeId.CYBERNETICSCORE, 1),
+                            GridBuilding(UnitTypeId.TWILIGHTCOUNCIL, 1),
+                        ),
                         Step(UnitReady(UnitTypeId.TWILIGHTCOUNCIL, 1), Tech(UpgradeId.BLINKTECH)),
                     ),
                     SequentialList(
@@ -74,7 +77,8 @@ class Stalkers4Gate(SkeletonBot):
                             skip_until=UnitReady(UnitTypeId.GATEWAY, 1),
                         ),
                         Step(
-                            UnitReady(UnitTypeId.CYBERNETICSCORE, 1), ProtossUnit(UnitTypeId.ADEPT, 2, only_once=True),
+                            UnitReady(UnitTypeId.CYBERNETICSCORE, 1),
+                            ProtossUnit(UnitTypeId.ADEPT, 2, only_once=True),
                         ),
                         Tech(UpgradeId.WARPGATERESEARCH),
                         ProtossUnit(UnitTypeId.STALKER, 100),

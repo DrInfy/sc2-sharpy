@@ -73,7 +73,7 @@ class IUnitValues(ABC):
 
     @abstractmethod
     def can_assist_defense(self, unit: Unit) -> bool:
-        """ Returns true when unit is an utility unit that can help defend even if it cannot attack correct targets itself."""
+        """Returns true when unit is an utility unit that can help defend even if it cannot attack correct targets itself."""
         pass
 
     @abstractmethod
@@ -111,5 +111,5 @@ class IUnitValues(ABC):
 
     @abstractmethod
     def should_attack(self, unit: Unit):
-        """ Determines if the unit is something that should attack. """
+        """Determines if the unit is something that should attack."""
         pass

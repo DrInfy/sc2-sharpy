@@ -8,7 +8,7 @@ from sharpy.plans.require.require_base import RequireBase
 class TechReady(RequireBase):
     # Check at tech research progress
     """Require that a specific upgrade/technology already exists or is at
-     least at the required percentage."""
+    least at the required percentage."""
 
     def __init__(self, upgrade: UpgradeId, percentage: float = 1):
         assert upgrade is not None and isinstance(upgrade, UpgradeId)

@@ -287,7 +287,7 @@ class ZoneManager(ManagerBase, IZoneManager):
         self._cached_enemy_base_ramp = None
 
     def init_zone_pathing(self):
-        """ Init zone pathing. This needs to be run after all managers have properly started. """
+        """Init zone pathing. This needs to be run after all managers have properly started."""
         pf: sc2pathlib.PathFinder = self.knowledge.pathing_manager.path_finder_terrain
         zone_count = len(self._expansion_zones)
         for i in range(0, zone_count):
@@ -615,7 +615,7 @@ class ZoneManager(ManagerBase, IZoneManager):
 
     @property
     def enemy_main_zone(self) -> Zone:
-        """ Returns enemy main / start zone."""
+        """Returns enemy main / start zone."""
         # todo: maybe at some point this could return enemy's actual main base, if it has lost the start location.
         # todo: detection could be base on eg. number of tech buildings
         return self._expansion_zones[len(self._expansion_zones) - 1]

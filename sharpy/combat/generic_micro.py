@@ -36,10 +36,12 @@ class GenericMicro(MicroStep):
         self.prio_dict: Optional[Dict[UnitTypeId, int]] = None
         self.model = CombatModel.StalkerToRoach
         self.cyclone_dodge = True
-        self.models_with_retreat = [CombatModel.StalkerToRoach,
-                                    CombatModel.StalkerToSpeedlings,
-                                    CombatModel.Melee,
-                                    CombatModel.StalkerToStalker]
+        self.models_with_retreat = [
+            CombatModel.StalkerToRoach,
+            CombatModel.StalkerToSpeedlings,
+            CombatModel.Melee,
+            CombatModel.StalkerToStalker,
+        ]
         super().__init__()
 
     def should_retreat(self, unit: Unit) -> bool:
@@ -133,8 +135,12 @@ class GenericMicro(MicroStep):
                     backstep = self.pather.find_weak_influence_ground(backstep, 4)
                 return Action(backstep, False)
 
-        if (self.should_retreat(unit) and self.closest_group and not self.ready_to_shoot(unit)
-                and self.model in self.models_with_retreat):
+        if (
+            self.should_retreat(unit)
+            and self.closest_group
+            and not self.ready_to_shoot(unit)
+            and self.model in self.models_with_retreat
+        ):
             backstep: Point2 = unit.position.towards(self.closest_group.center, -3)
             if unit.is_flying:
                 backstep = self.pather.find_weak_influence_air(backstep, 4)

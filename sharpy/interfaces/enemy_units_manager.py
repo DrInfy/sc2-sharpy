@@ -12,13 +12,13 @@ from sharpy.general.extended_power import ExtendedPower
 class IEnemyUnitsManager(ABC):
     """Keeps track of enemy units and structures.
 
-        Note that the class has many limitations, it does not account that
-        * banelings are created by sacrificing zerglings
-        * an archon is created by sacrificing two templars (dark templar or high templar).
-        * orbital commands are transformed from command centers.
-        * warp gates are transformed from gateways.
-        *
-        """
+    Note that the class has many limitations, it does not account that
+    * banelings are created by sacrificing zerglings
+    * an archon is created by sacrificing two templars (dark templar or high templar).
+    * orbital commands are transformed from command centers.
+    * warp gates are transformed from gateways.
+    *
+    """
 
     @property
     @abstractmethod

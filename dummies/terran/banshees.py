@@ -71,7 +71,8 @@ class Banshees(KnowledgeBot):
                 Step(None, BuildAddon(UnitTypeId.BARRACKSREACTOR, UnitTypeId.BARRACKS, 1)),
                 Step(None, GridBuilding(UnitTypeId.STARPORT, 2)),
                 Step(
-                    UnitReady(UnitTypeId.STARPORT, 2), BuildAddon(UnitTypeId.STARPORTTECHLAB, UnitTypeId.STARPORT, 2),
+                    UnitReady(UnitTypeId.STARPORT, 2),
+                    BuildAddon(UnitTypeId.STARPORTTECHLAB, UnitTypeId.STARPORT, 2),
                 ),
                 Step(None, Tech(UpgradeId.SHIELDWALL)),
                 Step(Minerals(600), GridBuilding(UnitTypeId.BARRACKS, 5)),
@@ -89,7 +90,8 @@ class Banshees(KnowledgeBot):
                     None,
                 ),
                 Step(
-                    UnitReady(UnitTypeId.STARPORT, 1), ActUnit(UnitTypeId.RAVEN, UnitTypeId.STARPORT, 2, priority=True),
+                    UnitReady(UnitTypeId.STARPORT, 1),
+                    ActUnit(UnitTypeId.RAVEN, UnitTypeId.STARPORT, 2, priority=True),
                 ),
             ],
             ActUnit(UnitTypeId.BANSHEE, UnitTypeId.STARPORT, 20, priority=True),

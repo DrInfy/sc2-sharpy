@@ -196,7 +196,10 @@ class ProxyZealotRushBot(KnowledgeBot):
                         StepBuildGas(5, skip=Gas(200)),
                     ],
                     SequentialList(
-                        Step(UnitReady(UnitTypeId.CYBERNETICSCORE, 1), GridBuilding(UnitTypeId.TWILIGHTCOUNCIL, 1),),
+                        Step(
+                            UnitReady(UnitTypeId.CYBERNETICSCORE, 1),
+                            GridBuilding(UnitTypeId.TWILIGHTCOUNCIL, 1),
+                        ),
                         GridBuilding(UnitTypeId.STARGATE, 1),
                         Step(UnitReady(UnitTypeId.TWILIGHTCOUNCIL, 1), Tech(UpgradeId.CHARGE)),
                         Step(UnitReady(UnitTypeId.TWILIGHTCOUNCIL, 1), Tech(UpgradeId.ADEPTPIERCINGATTACK)),

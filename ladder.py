@@ -165,4 +165,8 @@ def stand_alone_game(bot):
     file_name = f"IngameAI_{map_name}_{time}"
     path = f"{folder}/{file_name}.log"
     LoggingUtility.set_logger_file(log_level=get_config(False)["general"]["log_level"], path=path)
-    return sc2.main.run_game(sc2.maps.get(map_name), [bot, Computer(Race.Random, Difficulty.VeryHard)], realtime=False,)
+    return sc2.main.run_game(
+        sc2.maps.get(map_name),
+        [bot, Computer(Race.Random, Difficulty.VeryHard)],
+        realtime=False,
+    )

@@ -68,7 +68,7 @@ class SpreadCreepV2(ActBase):
         ]
 
     def fill_reserved_expansion_positions(self):
-        """ Fill all locations where no creep tumor should be planted at. """
+        """Fill all locations where no creep tumor should be planted at."""
         for expansion in self.ai.expansion_locations_list:
             xx, yy = [int(i) for i in expansion]
             for x in range(-2, 3):
@@ -121,7 +121,7 @@ class SpreadCreepV2(ActBase):
             self.available_tumor_locations.append(point)
 
     async def spread_creep_tumors(self):
-        """ Orders tumors to plant new tumors. """
+        """Orders tumors to plant new tumors."""
         tumors = self.cache.own(UnitTypeId.CREEPTUMORBURROWED)
 
         for tumor in tumors:  # type: Unit
@@ -132,7 +132,7 @@ class SpreadCreepV2(ActBase):
                     tumor(AbilityId.BUILD_CREEPTUMOR_TUMOR, position)
 
     async def spawn_creep_tumors(self):
-        """ Order queens to plant tumors. """
+        """Order queens to plant tumors."""
         all_queens = self.cache.own(UnitTypeId.QUEEN)  # todo: include burrowed queens?
         if all_queens.empty:
             return
@@ -158,7 +158,7 @@ class SpreadCreepV2(ActBase):
                     queen.move(self.ai.townhalls.closest_to(queen).position)
 
     def get_next_plant_position(self, queen: Unit) -> Optional[Point2]:
-        """ Tries to find a suitable position for queens to plant tumors at. """
+        """Tries to find a suitable position for queens to plant tumors at."""
 
         # Map is covered in creep, no need to place more tumors
         if not self.available_tumor_locations:
@@ -197,7 +197,7 @@ class SpreadCreepV2(ActBase):
             return queen_pos
 
     def get_next_creep_tumor_position(self, tumor: Unit) -> Optional[Point2]:
-        """ Tries to find a suitable position for tumors to move to next. """
+        """Tries to find a suitable position for tumors to move to next."""
         tumor_pos: Point2 = tumor.position
         # TODO Find the closest by ground path instead of air distance
         target_pos = tumor_pos.closest(self.available_tumor_locations)
@@ -215,7 +215,7 @@ class SpreadCreepV2(ActBase):
         return self.get_next_creep_tumor_position2(tumor)
 
     def get_next_creep_tumor_position2(self, tumor: Unit) -> Optional[Point2]:
-        """ The old version of the find creep tumor locations in case the one above find a suitable location. """
+        """The old version of the find creep tumor locations in case the one above find a suitable location."""
         towards = self.zone_manager.enemy_main_zone.center_location
 
         # iterate a few times so we find a suitable position
@@ -233,11 +233,11 @@ class SpreadCreepV2(ActBase):
         return None
 
     def is_placeable(self, position: Point2) -> bool:
-        """ Filters out locations that
-            - Filter locations that are already target of tumors
-            - Have no creep ('illegal' for tumors and queens to plant at this locations)
-            - Would block expansion locations
-            - Are used by other structures? Or what does building_solver actually do?
+        """Filters out locations that
+        - Filter locations that are already target of tumors
+        - Have no creep ('illegal' for tumors and queens to plant at this locations)
+        - Would block expansion locations
+        - Are used by other structures? Or what does building_solver actually do?
         """
         return (
             position not in self.tumor_used_locations

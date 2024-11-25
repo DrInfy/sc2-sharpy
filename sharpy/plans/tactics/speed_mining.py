@@ -13,7 +13,7 @@ MINING_RADIUS = 1.325
 
 
 class SpeedMining(ActBase):
-    """ Make worker mine faster perhaps? """
+    """Make worker mine faster perhaps?"""
 
     def __init__(self, enable_on_return=True, enable_on_mine=True) -> None:
         super().__init__()

@@ -58,7 +58,7 @@ class MatchRunner:
             result = asyncio.get_event_loop().run_until_complete(
                 asyncio.gather(
                     _host_game(map_settings, players, **kwargs, portconfig=portconfig),
-                    self.join_game(ladder_bot, False, portconfig, opponent_id)
+                    self.join_game(ladder_bot, False, portconfig, opponent_id),
                     # ladder_bot.join_game(opponent_id, portconfig=portconfig)
                 )
             )

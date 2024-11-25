@@ -92,11 +92,11 @@ class LadderZip:
         return json_exe.replace("[NAME]", self.name).replace("[RACE]", self.race)
 
     def pre_zip(self):
-        """ Override this as needed, actions to do before creating the zip"""
+        """Override this as needed, actions to do before creating the zip"""
         pass
 
     def post_zip(self):
-        """ Override this as needed, actions to do after creating the zip"""
+        """Override this as needed, actions to do after creating the zip"""
         pass
 
     def package_executable(self, output_dir: str):

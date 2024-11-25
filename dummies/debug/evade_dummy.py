@@ -13,6 +13,7 @@ from sharpy.managers.extensions import ChatManager
 from sharpy.plans import BuildOrder
 from sharpy.combat import Action, MoveType, GenericMicro, CombatModel
 
+
 class MicroEvade(GenericMicro):
     def __init__(self):
         self.surround_move = False

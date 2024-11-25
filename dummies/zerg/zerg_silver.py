@@ -26,7 +26,11 @@ class RoachHydraBuild(BuildOrder):
         self.worker_rushed = False
 
         gas_related = [
-            Step(UnitExists(UnitTypeId.HATCHERY, 2), Tech(UpgradeId.ZERGLINGMOVEMENTSPEED), skip_until=Gas(100),),
+            Step(
+                UnitExists(UnitTypeId.HATCHERY, 2),
+                Tech(UpgradeId.ZERGLINGMOVEMENTSPEED),
+                skip_until=Gas(100),
+            ),
             Step(None, ActBuilding(UnitTypeId.ROACHWARREN, 1), skip_until=Gas(100)),
             StepBuildGas(2, Time(4 * 60), Gas(100)),
             StepBuildGas(3, UnitExists(UnitTypeId.HYDRALISKDEN, 1), Gas(50)),
@@ -86,7 +90,11 @@ class RoachHydraBuild(BuildOrder):
             Step(None, ActUnitOnce(UnitTypeId.ZERGLING, UnitTypeId.LARVA, 16), None),
             Step(None, ActUnitOnce(UnitTypeId.ZERGLING, UnitTypeId.LARVA, 100), skip_until=Minerals(750)),
             Step(None, ZergUnit(UnitTypeId.DRONE, 45), None),
-            Step(None, ZergUnit(UnitTypeId.HYDRALISK, 7), skip=UnitReady(UnitTypeId.HYDRALISKDEN, 1),),
+            Step(
+                None,
+                ZergUnit(UnitTypeId.HYDRALISK, 7),
+                skip=UnitReady(UnitTypeId.HYDRALISKDEN, 1),
+            ),
             Step(None, ActUnitOnce(UnitTypeId.ZERGLING, UnitTypeId.LARVA, 24), None),
             Step(None, ZergUnit(UnitTypeId.DRONE, 50), None),
             Step(None, ZergUnit(UnitTypeId.ROACH, 10), skip_until=Gas(25)),

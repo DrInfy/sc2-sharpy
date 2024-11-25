@@ -32,7 +32,11 @@ class CycloneBot(KnowledgeBot):
             Step(None, Expand(3)),
             GridBuilding(UnitTypeId.FACTORY, 2),
             BuildAddon(UnitTypeId.FACTORYTECHLAB, UnitTypeId.FACTORY, 2),
-            Step(None, Tech(UpgradeId.CYCLONELOCKONDAMAGEUPGRADE), skip_until=UnitReady(UnitTypeId.FACTORYTECHLAB, 1),),
+            Step(
+                None,
+                Tech(UpgradeId.CYCLONELOCKONDAMAGEUPGRADE),
+                skip_until=UnitReady(UnitTypeId.FACTORYTECHLAB, 1),
+            ),
             BuildGas(5),
             Step(None, Tech(UpgradeId.HIGHCAPACITYBARRELS), skip_until=UnitReady(UnitTypeId.FACTORYTECHLAB, 2)),
             StepBuildGas(6, None, Gas(100)),
@@ -93,7 +97,10 @@ class CycloneBot(KnowledgeBot):
             ],
             [
                 Step(None, ActUnit(UnitTypeId.SCV, UnitTypeId.COMMANDCENTER, 40)),
-                Step(UnitExists(UnitTypeId.COMMANDCENTER, 3), ActUnit(UnitTypeId.SCV, UnitTypeId.COMMANDCENTER, 70),),
+                Step(
+                    UnitExists(UnitTypeId.COMMANDCENTER, 3),
+                    ActUnit(UnitTypeId.SCV, UnitTypeId.COMMANDCENTER, 70),
+                ),
             ],
             upgrades,
             ActUnit(UnitTypeId.MARINE, UnitTypeId.BARRACKS, 4),

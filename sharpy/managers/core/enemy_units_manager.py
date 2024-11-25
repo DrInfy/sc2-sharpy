@@ -16,13 +16,13 @@ from sharpy.managers.core.unit_value import UnitValue, REVERSE_MORPHS_DICT
 class EnemyUnitsManager(ManagerBase, IEnemyUnitsManager):
     """Keeps track of enemy units and structures.
 
-        Note that the class has many limitations, it does not account that
-        * banelings are created by sacrificing zerglings
-        * an archon is created by sacrificing two templars (dark templar or high templar).
-        * orbital commands are transformed from command centers.
-        * warp gates are transformed from gateways.
-        *
-        """
+    Note that the class has many limitations, it does not account that
+    * banelings are created by sacrificing zerglings
+    * an archon is created by sacrificing two templars (dark templar or high templar).
+    * orbital commands are transformed from command centers.
+    * warp gates are transformed from gateways.
+    *
+    """
 
     unit_values: UnitValue
 
@@ -71,7 +71,7 @@ class EnemyUnitsManager(ManagerBase, IEnemyUnitsManager):
     @property
     def enemy_total_power(self) -> ExtendedPower:
         """Returns the total power of all enemy units we currently know about.
-         Assumes they are all in full health. Ignores workers and overlords."""
+        Assumes they are all in full health. Ignores workers and overlords."""
         total_power = ExtendedPower(self.unit_values)
         for type_id in self._known_enemy_units_dict:
             if self.unit_values.is_worker(type_id):

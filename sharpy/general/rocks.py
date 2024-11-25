@@ -52,7 +52,6 @@ breakable_rocks_2x6 = {
     UnitTypeId.DESTRUCTIBLEROCK2X6VERTICAL,
     UnitTypeId.DESTRUCTIBLEROCKEX12X6VERTICAL,
     UnitTypeId.DESTRUCTIBLEROCKEX1VERTICALHUGE,
-
 }
 
 breakable_rocks_6x6 = {

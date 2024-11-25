@@ -147,7 +147,7 @@ class SkeletonBot(BotAI, ABC):
         can_afford_check: bool = False,
         ignore_warning: bool = False,
     ) -> bool:
-        """ Adds a unit action to the 'self.actions' list which is then executed at the end of the frame.
+        """Adds a unit action to the 'self.actions' list which is then executed at the end of the frame.
 
         Training a unit::
 

@@ -59,7 +59,8 @@ class MacroRobo(KnowledgeBot):
                     SequentialList(
                         [
                             Step(
-                                UnitReady(UnitTypeId.CYBERNETICSCORE, 1), GridBuilding(UnitTypeId.TWILIGHTCOUNCIL, 1),
+                                UnitReady(UnitTypeId.CYBERNETICSCORE, 1),
+                                GridBuilding(UnitTypeId.TWILIGHTCOUNCIL, 1),
                             ),
                             GridBuilding(UnitTypeId.ROBOTICSFACILITY, 1),
                             Step(UnitReady(UnitTypeId.TWILIGHTCOUNCIL, 1), Tech(UpgradeId.CHARGE)),

@@ -19,7 +19,7 @@ class PlanZoneDefense(ActBase):
 
     def __init__(self):
         super().__init__()
-        self.worker_return_distance2 = 10 ** 10
+        self.worker_return_distance2 = 10**10
 
         self.defender_tags: Dict[int, List[int]] = dict()
         self.defender_secondary_tags: Dict[int, List[int]] = dict()

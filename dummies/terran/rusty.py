@@ -67,7 +67,10 @@ class BuildTanks(BuildOrder):
         buildings = [
             Step(Supply(13), GridBuilding(UnitTypeId.SUPPLYDEPOT, 1)),
             StepBuildGas(1, Supply(16)),
-            Step(UnitExists(UnitTypeId.SUPPLYDEPOT), GridBuilding(UnitTypeId.BARRACKS, 1),),
+            Step(
+                UnitExists(UnitTypeId.SUPPLYDEPOT),
+                GridBuilding(UnitTypeId.BARRACKS, 1),
+            ),
             Step(UnitReady(UnitTypeId.BARRACKS, 0.25), GridBuilding(UnitTypeId.SUPPLYDEPOT, 2)),
             StepBuildGas(1, Supply(18)),
             Step(UnitExists(UnitTypeId.MARINE, 1), Expand(2)),

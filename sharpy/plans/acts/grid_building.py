@@ -356,7 +356,7 @@ class GridBuilding(ActBuilding):
         return True
 
     def prequisite_progress(self) -> float:
-        """ Return progress in realtime seconds """
+        """Return progress in realtime seconds"""
         # Protoss:
         if self.unit_type == UnitTypeId.GATEWAY or self.unit_type == UnitTypeId.FORGE:
             return self.building_progress(UnitTypeId.PYLON)

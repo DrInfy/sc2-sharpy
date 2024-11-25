@@ -52,8 +52,8 @@ def _get_intersections(x0: float, y0: float, r0: float, x1: float, y1: float, r1
     if d == 0 and r0 == r1:
         return []
     else:
-        a = (r0 ** 2 - r1 ** 2 + d ** 2) / (2 * d)
-        h = math.sqrt(r0 ** 2 - a ** 2)
+        a = (r0**2 - r1**2 + d**2) / (2 * d)
+        h = math.sqrt(r0**2 - a**2)
         x2 = x0 + a * (x1 - x0) / d
         y2 = y0 + a * (y1 - y0) / d
         x3 = x2 + h * (y1 - y0) / d
@@ -90,10 +90,10 @@ def line_angle(from_point: Point2, to_point: Point2):
 
 def point_angle(point: Point2) -> float:
     """
-        (x,y) = (1,0) => -pi /2
-        (x,y) = (0,-1) => 0
-        (x,y) = (0,1) => pi
-        (x,y) = (-1,0) =>  pi / 2
+    (x,y) = (1,0) => -pi /2
+    (x,y) = (0,-1) => 0
+    (x,y) = (0,1) => pi
+    (x,y) = (-1,0) =>  pi / 2
     """
     if point.y == 0:
         if point.x > 0:
@@ -137,7 +137,7 @@ def angle_distance(angle1: float, angle2: float):
 def point_normalize(point: Point2) -> Point2:
     if point.x == 0 and point.y == 0:
         return point
-    length = math.sqrt(point.x ** 2 + point.y ** 2)
+    length = math.sqrt(point.x**2 + point.y**2)
 
     return Point2((point.x / length, point.y / length))
 
@@ -176,7 +176,7 @@ def compute_euclidean_distance_matrix(locations):
 
 
 def unit_geometric_median(units: Units, accuracy=0.5) -> Point2:
-    """ Calculates geometric median based on units, returns (0,0) if no units exist """
+    """Calculates geometric median based on units, returns (0,0) if no units exist"""
     if len(units) == 0:
         return Point2((0, 0))
 

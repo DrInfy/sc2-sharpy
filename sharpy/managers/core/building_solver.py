@@ -198,7 +198,7 @@ class BuildingSolver(ManagerBase, IBuildingSolver):
 
     async def start(self, knowledge: "Knowledge"):
         await super().start(knowledge)
-        if (len(self.zone_manager.expansion_zones) > 1):
+        if len(self.zone_manager.expansion_zones) > 1:
             self.grid = BuildGrid(self.knowledge)
             self.base_ramp = self.zone_manager.expansion_zones[0].ramp
             self.color_zone(self.zone_manager.expansion_zones[0], ZoneArea.OwnMainZone)

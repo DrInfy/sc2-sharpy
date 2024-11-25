@@ -39,7 +39,7 @@ class CombatUnits:
             for unit in self.units:
                 d = unit.distance_to(self.center)
                 self._total_distance += d
-                self._area_by_circles += unit.radius ** 2
+                self._area_by_circles += unit.radius**2
         total_area_thing = (self._total_distance / len(self.units)) ** 2
         # self.knowledge.print(
         #     f"spread: {self._total_distance} d to {total_area_thing} r and _area_by_circles {self._area_by_circles }"

@@ -124,7 +124,7 @@ class UnitRoleManager(ManagerBase):
         return units.tags_in(all_tags)
 
     def get_unit_by_tag_from_task(self, tag: int, task: Union[int, UnitTask]) -> Optional[Unit]:
-        """ Get unit by its tag from the specified role. """
+        """Get unit by its tag from the specified role."""
         if tag in self.roles[task].tags:
             return self.roles[task].units.by_tag(tag)
         return None
@@ -157,7 +157,7 @@ class UnitRoleManager(ManagerBase):
         power: ExtendedPower,
         units: Units,
     ):
-        """ Get defenders from a task. """
+        """Get defenders from a task."""
         if current_power.is_enough_for(power):
             return
 
@@ -209,14 +209,14 @@ class UnitRoleManager(ManagerBase):
 
     @property
     def idle_workers(self) -> Units:
-        """ Free workers, ie. gathering minerals or gas, or idling, and not dedicated to defending or scouting."""
+        """Free workers, ie. gathering minerals or gas, or idling, and not dedicated to defending or scouting."""
         units: Units = self.roles[UnitTask.Idle].units
         # Mules should not count for workers
         return units.of_type([UnitTypeId.DRONE, UnitTypeId.PROBE, UnitTypeId.SCV])
 
     @property
     def free_workers(self) -> Units:
-        """ Free workers, ie. gathering minerals or gas, or idling, and not dedicated to defending or scouting."""
+        """Free workers, ie. gathering minerals or gas, or idling, and not dedicated to defending or scouting."""
         units: Units = Units(self.roles[UnitTask.Idle].units, self.ai)
         units.extend(self.roles[UnitTask.Gathering].units)
         # Mules should not count for workers

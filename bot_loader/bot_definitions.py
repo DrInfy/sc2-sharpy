@@ -212,10 +212,14 @@ class BotDefinitions:
         return bots
 
     def add_debug_bots(self, bot_dict: Dict[str, Tuple[Callable[[List[str]], AbstractPlayer], Optional[LadderZip]]]):
-        """ Debug bots won't have zip function. """
+        """Debug bots won't have zip function."""
         debug_bots = {
-            "debugidle": (lambda params: Bot(race_selector(BotDefinitions.index_check(params, 0, "random")), IdleDummy())),
-            "debugevade": (lambda params: Bot(race_selector(BotDefinitions.index_check(params, 0, "random")), EvadeDummy())),
+            "debugidle": (
+                lambda params: Bot(race_selector(BotDefinitions.index_check(params, 0, "random")), IdleDummy())
+            ),
+            "debugevade": (
+                lambda params: Bot(race_selector(BotDefinitions.index_check(params, 0, "random")), EvadeDummy())
+            ),
             "debugtemplate": (lambda params: Bot(Race.Zerg, TemplateSkeletonBot())),
             "debugunits": (lambda params: Bot(Race.Zerg, DebugUnitsDummy())),
             "debugrestorepower": (lambda params: Bot(Race.Protoss, RestorePowerDummy())),

@@ -125,7 +125,7 @@ class DoubleAdeptScout(ActBase):
         self.combat.execute(local_target, MoveType.Harass, rules=self.micro)
 
     async def select_targets(self, center: Point2) -> (Point2, Point2):
-        """ Returns none if no valid target was found. """
+        """Returns none if no valid target was found."""
         closest_viable_zone: Zone = None
         second_viable_zone: Zone = None
         current_zone_index: Optional[int] = None

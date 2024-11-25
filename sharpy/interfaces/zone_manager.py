@@ -50,7 +50,7 @@ class IZoneManager(ABC):
     @property
     @abstractmethod
     def enemy_main_zone(self) -> Zone:
-        """ Returns enemy main / start zone."""
+        """Returns enemy main / start zone."""
         pass
 
     @property

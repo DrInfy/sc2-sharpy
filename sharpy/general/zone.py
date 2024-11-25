@@ -35,7 +35,7 @@ class Zone:
     ZONE_DANGER_RADIUS = 30
     MAIN_ZONE_RAMP_MAX_RADIUS = 26
     ZONE_RAMP_MAX_RADIUS = 15
-    ZONE_RADIUS_SQUARED = ZONE_RADIUS ** 2
+    ZONE_RADIUS_SQUARED = ZONE_RADIUS**2
     VESPENE_GEYSER_DISTANCE = 10
 
     def __init__(self, center_location, is_start_location, knowledge: "Knowledge", zone_manager: "ZoneManager"):
@@ -315,7 +315,7 @@ class Zone:
 
     @property
     def is_enemys(self) -> bool:
-        """ Is there an enemy town hall in this zone? """
+        """Is there an enemy town hall in this zone?"""
         return self._is_enemys
 
     @property
@@ -324,7 +324,7 @@ class Zone:
 
     @property
     def is_ours(self) -> bool:
-        """ Is there a town hall of ours in this zone or have we walled it off?"""
+        """Is there a town hall of ours in this zone or have we walled it off?"""
         return self.our_townhall is not None or self.our_wall()
 
     @property

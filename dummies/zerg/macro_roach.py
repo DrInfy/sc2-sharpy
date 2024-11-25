@@ -36,7 +36,10 @@ class MacroRoach(KnowledgeBot):
         ]
 
         buildings = [
-            Step(UnitExists(UnitTypeId.HATCHERY, 2, include_pending=True), ActBuilding(UnitTypeId.SPAWNINGPOOL, 1),),
+            Step(
+                UnitExists(UnitTypeId.HATCHERY, 2, include_pending=True),
+                ActBuilding(UnitTypeId.SPAWNINGPOOL, 1),
+            ),
             Step(UnitExists(UnitTypeId.QUEEN, 2), ActBuilding(UnitTypeId.ROACHWARREN, 1)),
         ]
 
@@ -67,7 +70,8 @@ class MacroRoach(KnowledgeBot):
             Step(UnitExists(UnitTypeId.HATCHERY, 2), ActUnit(UnitTypeId.ROACH, UnitTypeId.LARVA, 4)),
             Step(None, ActUnit(UnitTypeId.ZERGLING, UnitTypeId.LARVA, 4)),
             Step(
-                UnitExists(UnitTypeId.HATCHERY, 3, include_pending=True), ActUnit(UnitTypeId.ROACH, UnitTypeId.LARVA),
+                UnitExists(UnitTypeId.HATCHERY, 3, include_pending=True),
+                ActUnit(UnitTypeId.ROACH, UnitTypeId.LARVA),
             ),
         ]
 
