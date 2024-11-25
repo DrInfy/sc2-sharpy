@@ -33,7 +33,8 @@ class Grid:
         return self.get(math.floor(pos[0]), math.floor(pos[1]))
 
     @abstractmethod
-    def get_default(self): ...
+    def get_default(self):
+        ...
 
     def is_inside(self, pos: Point2):
         return 0 <= pos[0] < self.width and 0 <= pos[1] < self.height
