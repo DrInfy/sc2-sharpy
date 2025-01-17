@@ -131,6 +131,11 @@ Builds:
             "--requirewin", help="Requires victory for the specified player number (1 or 2) or raise exception."
         )
 
+
+        parser.add_argument(
+            "--ladderversion", help="Uses v4.10 as on the ladder. Ensure you have v4.10 and run the download script.", action=argparse.BooleanOptionalAction, default=False
+        )
+
         args = parser.parse_args()
 
         player1: str = args.player1
@@ -190,11 +195,17 @@ Builds:
         else:
             LoggingUtility.set_logger(log_level=self.config["general"]["log_level"])
 
+        sc2_version = None
+        if(args.ladderversion):
+            sc2_version = "4.10"
+
         GameStarter.setup_bot(player1_bot, player1, player2, args)
         GameStarter.setup_bot(player2_bot, player2, player1, args)
 
         print(f"Starting game in {map_name}.")
         print(f"{player1} vs {player2}")
+
+
 
         runner = MatchRunner()
         result = runner.run_game(
@@ -205,6 +216,7 @@ Builds:
             game_time_limit=(30 * 60),
             save_replay_as=f"{folder}/{file_name}.SC2Replay",
             start_port=args.port,
+            sc2_version=sc2_version
         )
 
         if args.requirewin:
